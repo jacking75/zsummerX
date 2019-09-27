@@ -13,9 +13,6 @@
     <Filter Include="include\impl">
       <UniqueIdentifier>{a5fcfdcb-d288-45e6-86ab-5f67670fa806}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\interface">
-      <UniqueIdentifier>{39e1124e-006c-4e1f-b827-93c4aae1929e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\iocp\iocp_impl.cpp">
@@ -59,9 +56,6 @@
     <ClInclude Include="..\include\zsummerX\iocp\common_impl.h">
       <Filter>include\impl</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\zsummerX\zsummerX.h">
-      <Filter>include\interface</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\zsummerX\common.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -75,6 +69,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="..\include\zsummerX\session.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\zsummerX\zsummerX.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
