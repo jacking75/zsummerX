@@ -19,26 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\common\common.cpp" />
-    <ClCompile Include="..\src\frame\session.cpp" />
-    <ClCompile Include="..\src\frame\manager.cpp" />
+    <ClCompile Include="..\src\common.cpp" />
     <ClCompile Include="..\src\iocp\iocp_impl.cpp" />
     <ClCompile Include="..\src\iocp\tcpaccept_impl.cpp" />
     <ClCompile Include="..\src\iocp\tcpsocket_impl.cpp" />
     <ClCompile Include="..\src\iocp\udpsocket_impl.cpp" />
-    <ClCompile Include="..\src\timer\timer.cpp" />
+    <ClCompile Include="..\src\manager.cpp" />
+    <ClCompile Include="..\src\session.cpp" />
+    <ClCompile Include="..\src\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\zsummerX\common\common.h" />
-    <ClInclude Include="..\include\zsummerX\frame\config.h" />
-    <ClInclude Include="..\include\zsummerX\frame\session.h" />
-    <ClInclude Include="..\include\zsummerX\frame\manager.h" />
+    <ClInclude Include="..\include\zsummerX\common.h" />
+    <ClInclude Include="..\include\zsummerX\config.h" />
     <ClInclude Include="..\include\zsummerX\iocp\common_impl.h" />
     <ClInclude Include="..\include\zsummerX\iocp\iocp_impl.h" />
     <ClInclude Include="..\include\zsummerX\iocp\tcpaccept_impl.h" />
     <ClInclude Include="..\include\zsummerX\iocp\tcpsocket_impl.h" />
     <ClInclude Include="..\include\zsummerX\iocp\udpsocket_impl.h" />
-    <ClInclude Include="..\include\zsummerX\timer\timer.h" />
+    <ClInclude Include="..\include\zsummerX\manager.h" />
+    <ClInclude Include="..\include\zsummerX\session.h" />
+    <ClInclude Include="..\include\zsummerX\timer.h" />
     <ClInclude Include="..\include\zsummerX\zsummerX.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -50,26 +50,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -135,6 +135,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>../depends;..\include</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -176,6 +177,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>../depends;../include/</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

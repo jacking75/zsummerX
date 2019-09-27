@@ -38,7 +38,7 @@
 #ifndef _ZSUMMERX_COMMON_IMPL_H_
 #define _ZSUMMERX_COMMON_IMPL_H_
 
-#include "../common/common.h"
+#include "../common.h"
 
 
 

@@ -62,8 +62,8 @@
 // default in linux use EPOLL LT implementation 
 // default in mac use select implementation
 
-#include "frame/config.h"
-#include "frame/manager.h"
+#include "config.h"
+#include "manager.h"
 
 
 

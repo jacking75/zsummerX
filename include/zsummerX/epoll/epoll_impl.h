@@ -37,7 +37,7 @@
 #ifndef _ZSUMMER_EPOLL_IMPL_H_
 #define _ZSUMMER_EPOLL_IMPL_H_
 #include "common_impl.h"
-#include "../timer/timer.h"
+#include "../timer.h"
 
 namespace zsummer
 {
