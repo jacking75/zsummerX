@@ -49,7 +49,8 @@ bool EventLoop::initialize()
         LCF("EventLoop::initialize[this0x"<<this <<"] epoll is created ! " );
         return false;
     }
-    const int IGNORE_ENVENTS = 100;
+    
+	const int IGNORE_ENVENTS = 100;
     _epoll = epoll_create(IGNORE_ENVENTS);
     if (_epoll == InvalidFD)
     {

@@ -35,6 +35,7 @@
  */
 
 //! zsummer的测试服务模块(对应zsummer底层网络封装的上层设计测试服务) 可视为服务端架构中的 gateway服务/agent服务/前端服务, 特点是高并发高吞吐量
+// zsummer의 테스트 서비스 모듈 (zsummer 하단 네트워크 패키지의 상위 계층 설계 테스트 서비스에 해당)은 서버 측 아키텍처에서 게이트웨이 서비스 / 에이전트 서비스 / 프런트 엔드 서비스로 간주 될 수 있으며 높은 동시성 및 높은 처리량을 제공합니다.
 //! main文件
 
 
@@ -53,7 +54,7 @@ unsigned int   g_multiThread = 2; //multithread
 int main(int argc, char* argv[])
 {
 
-#ifndef _WIN32
+#ifndef _MSC_BUILD
     //! linux下需要屏蔽的一些信号
     signal( SIGHUP, SIG_IGN );
     signal( SIGALRM, SIG_IGN ); 
@@ -65,6 +66,7 @@ int main(int argc, char* argv[])
     signal( SIGQUIT, SIG_IGN );
     signal( SIGCHLD, SIG_IGN);
 #endif
+
     if (argc == 2 && 
         (strcmp(argv[1], "--help") == 0 
         || strcmp(argv[1], "/?") == 0))
@@ -97,27 +99,27 @@ int main(int argc, char* argv[])
     {
         g_multiThread = atoi(argv[5]);
     }
+
     g_multiThread = g_multiThread < 1 ? 1 : g_multiThread;
     g_multiThread = g_multiThread > 100 ? 100 : g_multiThread;
 
     if (g_startType == 0)
     {
-        //! 启动日志服务
+        //! 로그 서비스 시작
         ILog4zManager::getPtr()->config("server.cfg");
         ILog4zManager::getPtr()->start();
     }
     else
     {
-                //! 启动日志服务
+                //! 로그 서비스 시작
         ILog4zManager::getPtr()->config("client.cfg");
         ILog4zManager::getPtr()->start();
     }
     LOGI("g_remoteIP=" << g_remoteIP << ", g_remotePort=" << g_remotePort << ", g_startType=" << g_startType 
         << ", g_maxClient=" << g_maxClient   << ", g_multiThread=" << g_multiThread);
 
-
-
-    //! 启动调度器
+	
+    //! 스케쥴러 시작
     CSchedule schedule;
     schedule.start();
 

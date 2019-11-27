@@ -37,6 +37,7 @@
 
 //! zsummer的测试服务模块(对应zsummer底层网络封装的上层设计测试服务) 可视为服务端架构中的 gateway服务/agent服务/前端服务, 特点是高并发高吞吐量
 //! IOServer头文件 该类负责处理Schedule抛过来的client socket. 每个IOServer独立一个线程.
+  //IOServer 클래스는 Schedule에 의해 발생된 클라이언트 소켓을 처리하는 역할을 하며 각 IOServer에는 별도의 스레드가 있다.
 
 #ifndef ZSUMMER_PROCESS_H_
 #define ZSUMMER_PROCESS_H_
@@ -47,12 +48,12 @@ class CProcess
 {
 public:
     CProcess();
-    //! 启动与停止
+    
     bool start();
     void stop();
-    //! 线程
+    
     void run();
-    //!
+    
     inline zsummer::network::EventLoopPtr GetZSummer(){return _summer;}
 private:
     zsummer::network::EventLoopPtr _summer;
@@ -66,7 +67,7 @@ public:
     {
         _summer->post(h);
     }
-    //接收一个socket
+    
     void RecvSocketPtr(std::shared_ptr<zsummer::network::TcpSocket> sockptr);
 
     //all use

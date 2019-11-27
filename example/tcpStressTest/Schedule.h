@@ -35,7 +35,9 @@
  */
 
 //! zsummer的测试服务模块(对应zsummer底层网络封装的上层设计测试服务) 可视为服务端架构中的 gateway服务/agent服务/前端服务, 特点是高并发高吞吐量
+  //zsummer의 테스트 서비스 모듈 (zsummer 하단 네트워크 패키지의 상위 계층 설계 테스트 서비스에 해당)은 서버 측 아키텍처에서 게이트웨이 서비스 / 에이전트 서비스 / 프런트 엔드 서비스로 간주 될 수 있으며 높은 동시성 및 높은 처리량을 제공합니다.
 //! Schedule头文件 该类负责监听端口, accept client, 并把accept到的socket分发给IOServer池去处理.
+  //스케줄 클래스는 EventLoop로 클라이언트를 accept 처리를 하고 IOServer 풀에 수신된 소켓을 분배한다.
 
 
 #ifndef ZSUMMER_SCHEDULE_H_
@@ -46,17 +48,17 @@ class CSchedule
 {
 public:
     CSchedule();
-    //! 启动与停止
+    
     void start();
     void stop();
-    //! 线程
+    
     void run();
 
     void OnAccept(zsummer::network::NetErrorCode ec, TcpSocketPtr sockptr);
 
     void doConnect(unsigned int maxClient);
 
-    //! IOServer池
+    //! IOServer
     std::vector<CProcess *> _process;
     int                        _iCurProcess = 0;
 

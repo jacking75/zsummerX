@@ -166,6 +166,7 @@ bool TcpAccept::openAccept(const std::string ip, unsigned short port , bool reus
         }
         
     }
+	
 	if (true)
 	{
 		int OptionValue = 1;
