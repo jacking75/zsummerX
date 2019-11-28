@@ -192,7 +192,7 @@
 #include <math.h>
 #include <cmath>
 #include <stdlib.h>
-#ifdef WIN32
+#ifdef _MSC_BUILD
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #endif
@@ -225,7 +225,7 @@ const char*const LOG4Z_MAIN_LOGGER_KEY = "Main";
 #define LOG4Z_FORMAT_INPUT_ENABLE
 #endif
 
-#ifndef WIN32
+#ifndef _MSC_BUILD
 #define LOG4Z_FORMAT_INPUT_ENABLE
 #endif
 
@@ -485,7 +485,7 @@ _ZSUMMER_BEGIN
 _ZSUMMER_LOG4Z_BEGIN
 
 //! optimze from std::stringstream to Log4zStream
-#ifdef WIN32
+#ifdef _MSC_BUILD
 #pragma warning(push)
 #pragma warning(disable:4996)
 #endif
@@ -921,7 +921,7 @@ inline Log4zStream & zsummer::log4z::Log4zStream::writeString(const char * t, si
 
 
 
-#ifdef WIN32
+#ifdef _MSC_BUILD
 #pragma warning(pop)
 #endif
 
