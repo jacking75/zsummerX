@@ -96,7 +96,8 @@ void CClient::onConnected(zsummer::network::NetErrorCode ec)
 
 void CClient::doRecv()
 {
-    bool bSuccess = _sockptr->doRecv(_recving._orgdata + _recving._offset, _MSG_BUF_LEN - _recving._offset, std::bind(&CClient::onRecv, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+    bool bSuccess = _sockptr->doRecv(_recving._orgdata + _recving._offset, _MSG_BUF_LEN - _recving._offset, 
+					std::bind(&CClient::onRecv, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
     if (!bSuccess)
     {
         onClose();
@@ -155,7 +156,7 @@ unsigned int CClient::onRecv(zsummer::network::NetErrorCode ec, int nRecvedLen)
     {
         _recving._offset = 0;
     }
-    //! 继续收包
+    
     doRecv();
     return 0;
 }
@@ -198,7 +199,8 @@ void CClient::onSend(zsummer::network::NetErrorCode ec,  int nSentLen)
     _sending._offset += nSentLen;
     if (_sending._offset < _needSendLen)
     {
-        _sockptr->doSend(_sending._orgdata + _sending._offset, _needSendLen - _sending._offset, std::bind(&CClient::onSend, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+        _sockptr->doSend(_sending._orgdata + _sending._offset, _needSendLen - _sending._offset, 
+					std::bind(&CClient::onSend, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
     }
     else if (_sending._offset == _needSendLen)
     {
@@ -221,7 +223,8 @@ void CClient::onSend(zsummer::network::NetErrorCode ec,  int nSentLen)
                 _process._nTotalSendPacket++;
             } while (!_sendque.empty());
             
-            _sockptr->doSend(_sending._orgdata + _sending._offset, _needSendLen - _sending._offset, std::bind(&CClient::onSend, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+            _sockptr->doSend(_sending._orgdata + _sending._offset, _needSendLen - _sending._offset, 
+						std::bind(&CClient::onSend, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
         }
     }
 }
