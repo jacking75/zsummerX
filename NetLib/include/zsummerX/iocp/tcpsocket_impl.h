@@ -42,6 +42,7 @@ namespace zsummer
 {
     namespace network
     {
+		//TODO tcp 소켓을 동적 할당/해제 해서 사용하는 것을 전제로 하고 있다. 오브젝트 풀에서 사용할 수 있도록 기능을 추가 구현하자
         class TcpSocket : public std::enable_shared_from_this<TcpSocket>
         {
         public:

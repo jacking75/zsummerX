@@ -1,23 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="http">
-      <UniqueIdentifier>{1670c306-e1cc-4a8e-b20d-e1feac7c711b}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\src\common.cpp" />
     <ClCompile Include="..\src\iocp\iocp_impl.cpp" />
     <ClCompile Include="..\src\iocp\tcpaccept_impl.cpp" />
     <ClCompile Include="..\src\iocp\tcpsocket_impl.cpp" />
     <ClCompile Include="..\src\timer.cpp" />
     <ClCompile Include="..\src\iocp\udpsocket_impl.cpp" />
-    <ClCompile Include="..\src\session.cpp">
-      <Filter>http</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\manager.cpp">
-      <Filter>http</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\zsummerX\common.h" />
@@ -29,11 +18,5 @@
     <ClInclude Include="..\include\zsummerX\timer.h" />
     <ClInclude Include="..\include\zsummerX\iocp\udpsocket_impl.h" />
     <ClInclude Include="..\include\zsummerX\zsummerX.h" />
-    <ClInclude Include="..\include\zsummerX\session.h">
-      <Filter>http</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\zsummerX\manager.h">
-      <Filter>http</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

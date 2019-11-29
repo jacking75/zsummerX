@@ -214,6 +214,50 @@ bool TcpAccept::close()
     return true;
 }
 
+bool TcpAccept::doAccept(const TcpSocketPtr& s)
+{
+	if (!_summer || _server == INVALID_SOCKET)
+	{
+		LCF("TcpAccept not initialize." << logSection());
+		return false;
+	}
+
+	_client = s;
+	_socket = INVALID_SOCKET;
+	memset(_recvBuf, 0, sizeof(_recvBuf));
+	_recvLen = 0;
+	unsigned int addrLen = 0;
+	if (_isIPV6)
+	{
+		addrLen = sizeof(SOCKADDR_IN6) + 16;
+		_socket = WSASocket(AF_INET6, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
+	}
+	else
+	{
+		addrLen = sizeof(SOCKADDR_IN) + 16;
+		_socket = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
+	}
+	if (_socket == INVALID_SOCKET)
+	{
+		LCF("TcpAccept::doAccept create client socket error! error code=" << WSAGetLastError());
+		return false;
+	}
+	setNoDelay(_socket);
+	if (!AcceptEx(_server, _socket, _recvBuf, 0, addrLen, addrLen, &_recvLen, &_handle._overlapped))
+	{
+		if (WSAGetLastError() != ERROR_IO_PENDING)
+		{
+			LCE("TcpAccept::doAccept do AcceptEx error, error code =" << WSAGetLastError());
+			closesocket(_socket);
+			_socket = INVALID_SOCKET;
+			return false;
+		}
+	}
+	
+	_handle._tcpAccept = shared_from_this();
+	return true;
+}
+
 bool TcpAccept::doAccept(const TcpSocketPtr & s, _OnAcceptHandler&& handler)
 {
     if (_onAcceptHandler)
@@ -221,47 +265,11 @@ bool TcpAccept::doAccept(const TcpSocketPtr & s, _OnAcceptHandler&& handler)
         LCF("duplicate operation error." << logSection());
         return false;
     }
-    if (!_summer || _server == INVALID_SOCKET)
-    {
-        LCF("TcpAccept not initialize." << logSection());
-        return false;
-    }
     
-    _client = s;
-    _socket = INVALID_SOCKET;
-    memset(_recvBuf, 0, sizeof(_recvBuf));
-    _recvLen = 0;
-    unsigned int addrLen = 0;
-    if (_isIPV6)
-    {
-        addrLen = sizeof(SOCKADDR_IN6)+16;
-        _socket = WSASocket(AF_INET6, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
-    }
-    else
-    {
-        addrLen = sizeof(SOCKADDR_IN)+16;
-        _socket = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
-    }
-    if (_socket == INVALID_SOCKET)
-    {
-        LCF("TcpAccept::doAccept create client socket error! error code=" << WSAGetLastError() );
-        return false;
-    }
-    setNoDelay(_socket);
-    if (!AcceptEx(_server, _socket, _recvBuf, 0, addrLen, addrLen, &_recvLen, &_handle._overlapped))
-    {
-        if (WSAGetLastError() != ERROR_IO_PENDING)
-        {
-            LCE("TcpAccept::doAccept do AcceptEx error, error code =" << WSAGetLastError() );
-            closesocket(_socket);
-            _socket = INVALID_SOCKET;
-            return false;
-        }
-    }
     _onAcceptHandler = handler;
-    _handle._tcpAccept = shared_from_this();
-    return true;
+	return doAccept(s);
 }
+
 bool TcpAccept::onIOCPMessage(BOOL bSuccess)
 {
     std::shared_ptr<TcpAccept> guard( std::move(_handle._tcpAccept));

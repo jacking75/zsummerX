@@ -48,18 +48,31 @@ namespace zsummer
         public:
             TcpAccept();
             ~TcpAccept();
+
             bool initialize(EventLoopPtr& summer);
-            bool openAccept(const std::string ip, unsigned short port, bool reuse = true);
-            bool doAccept(const TcpSocketPtr& s, _OnAcceptHandler &&handler);
-            bool onIOCPMessage(BOOL bSuccess);
-            bool close();
+            
+			bool openAccept(const std::string ip, unsigned short port, bool reuse = true);
+            
+			bool doAccept(const TcpSocketPtr& s, _OnAcceptHandler &&handler);
+
+			/// 추가 구현 함수
+			bool doAccept(const TcpSocketPtr& s);
+            
+			bool onIOCPMessage(BOOL bSuccess);
+            
+			bool close();
+
+
+			/// 추가 구현 함수
+			void SetAcceptCallback(_OnAcceptHandler&& handler) { _onAcceptHandler = handler;	}
+
+
         private:
             std::string logSection();
-        private:
-            //config
-            EventLoopPtr _summer;
-
-
+       
+			
+			EventLoopPtr _summer;
+			
             std::string        _ip;
             unsigned short    _port = 0;
 

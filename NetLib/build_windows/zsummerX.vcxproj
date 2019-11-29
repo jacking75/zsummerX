@@ -24,8 +24,6 @@
     <ClCompile Include="..\src\iocp\tcpaccept_impl.cpp" />
     <ClCompile Include="..\src\iocp\tcpsocket_impl.cpp" />
     <ClCompile Include="..\src\iocp\udpsocket_impl.cpp" />
-    <ClCompile Include="..\src\manager.cpp" />
-    <ClCompile Include="..\src\session.cpp" />
     <ClCompile Include="..\src\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,8 +34,6 @@
     <ClInclude Include="..\include\zsummerX\iocp\tcpaccept_impl.h" />
     <ClInclude Include="..\include\zsummerX\iocp\tcpsocket_impl.h" />
     <ClInclude Include="..\include\zsummerX\iocp\udpsocket_impl.h" />
-    <ClInclude Include="..\include\zsummerX\manager.h" />
-    <ClInclude Include="..\include\zsummerX\session.h" />
     <ClInclude Include="..\include\zsummerX\timer.h" />
     <ClInclude Include="..\include\zsummerX\zsummerX.h" />
   </ItemGroup>

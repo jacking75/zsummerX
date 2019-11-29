@@ -63,7 +63,6 @@
 // default in mac use select implementation
 
 #include "config.h"
-#include "manager.h"
 
 
 
