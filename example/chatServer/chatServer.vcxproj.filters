@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="packetManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="server.h" />
+    <ClInclude Include="session.h" />
+    <ClInclude Include="ringBuffer.h" />
+    <ClInclude Include="errorCode.h" />
+    <ClInclude Include="packetManager.h" />
+    <ClInclude Include="room.h" />
+    <ClInclude Include="roomManager.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="userManager.h" />
+  </ItemGroup>
+</Project>

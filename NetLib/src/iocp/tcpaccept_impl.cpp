@@ -303,7 +303,6 @@ bool TcpAccept::onIOCPMessage(BOOL bSuccess)
             _client->attachSocket(_socket, inet_ntoa(((sockaddr_in*)paddr2)->sin_addr), ntohs(((sockaddr_in*)paddr2)->sin_port), _isIPV6);
             onAccept(NEC_SUCCESS, _client);
         }
-
     }
     else
     {
